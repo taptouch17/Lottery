@@ -24,7 +24,9 @@ RandomNumbers::RandomNumbers() {
 
 int RandomNumbers::randomNumber() {
     random_device device;
-    mt19937 engine{device()};
+    default_random_engine gen;
+    gen.seed(time(0));
+    mt19937 engine{gen()};
     uniform_int_distribution<int> distribution(1,30);
     int number = distribution(engine);
     return number;
